@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-chat-ui';
+import { multiply, TextComp } from 'react-native-chat-ui';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
@@ -12,6 +12,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <TextComp />
       <Text>Result: {result}</Text>
     </View>
   );
