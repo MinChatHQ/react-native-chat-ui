@@ -1,11 +1,12 @@
 {
-  "name": "react-native-chat-ui",
+  "name": "@minchat/react-native-chat-ui",
   "version": "0.1.0",
-  "description": "test",
+  "description": "React Native Chat UI Kit",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "types": "lib/typescript/src/index.d.ts",
   "react-native": "src/index.tsx",
+  "private": false,
   "source": "src/index",
   "files": [
     "src",
