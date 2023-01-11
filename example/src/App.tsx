@@ -1,32 +1,23 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply, TextComp } from 'react-native-chat-ui';
+import { Message, MessageList ,MessageContainer} from 'react-native-chat-ui';
+import { messages } from './data';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
 
   return (
-    <View style={styles.container}>
-      <TextComp />
-      <Text>Result: {result}</Text>
+    <View>
+
+      <MessageContainer
+        messages={messages}
+        currentUserId="danny_1"
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
 });

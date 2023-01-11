@@ -1,10 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function TComponent() {
+type Props = {}
+
+const Loading = (props: Props) => {
   return (
     <View>
-      <Text>TComponent</Text>
+      <Text>...</Text>
     </View>
   )
 }
+
+export default Loading
