@@ -7,7 +7,7 @@ type Props = {
     lastMessage?: MessageType,
     avatar?: string,
     onClick: () => void,
-    themeColor?: string
+    // themeColor?: string
     /**
      * the current user on the chat ui
      */
@@ -19,7 +19,7 @@ const Conversation = ({
     lastMessage,
     onClick,
     avatar,
-    themeColor = '#6ea9d7',
+    // themeColor = '#6ea9d7',
     currentUserId
 }: Props) => {
     const [usedAvatar, setUsedAvatar] = React.useState<any>(require('./profile.png'))

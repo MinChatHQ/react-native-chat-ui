@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import React from 'react'
 import MessageContainer, { Props as MessageContainerProps } from '../message-container';
 import ConversationContainer, { Props as ConversationContainerProps } from '../conversation-container';

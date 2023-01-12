@@ -26,7 +26,6 @@ const MessageList = ({
 }: Props) => {
 
     const [isAtBottom, setIsAtBottom] = React.useState(false)
-    const [isRendered, setIsRendered] = React.useState(false);
 
     const [reversedMessages, setReversedMessages] = React.useState<MessageType[]>([])
 
@@ -91,7 +90,7 @@ const MessageList = ({
                                 <KeyboardAwareFlatList
                                     inverted={true}
                                     ref={flatlistRef}
-                                    onLayout={() => setIsRendered(true)}
+                                    // onLayout={() => setIsRendered(true)}
                                     onScroll={(e) => {
                                         if (e.nativeEvent.contentOffset.y === 0) {
                                             onScrollToTop && onScrollToTop()
@@ -105,7 +104,7 @@ const MessageList = ({
                                             setIsAtBottom(false)
                                         }
                                     }}
-                                    keyExtractor={(item, index) => index.toString()}
+                                    keyExtractor={(_, index) => index.toString()}
                                     data={reversedMessages || []}
                                     renderItem={({ item: { user, text }, index }) => {
                                         if (user.id == (currentUserId && currentUserId.toLowerCase())) {

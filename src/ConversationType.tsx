@@ -1,4 +1,4 @@
-import MessageType from "./MessageType"
+import type MessageType from "./MessageType"
 
 type ConversationType = {
     title: string,

@@ -1,4 +1,4 @@
-import UserType from "./UserType"
+import type UserType from "./UserType"
 
  type MessageType = {
     user: UserType

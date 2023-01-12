@@ -41,11 +41,11 @@ const ConversationList = ({
 
                     <KeyboardAwareFlatList
                         onEndReached={() => onScrollToBottom && onScrollToBottom()}
-                        keyExtractor={(item, index) => index.toString()}
+                        keyExtractor={(_, index) => index.toString()}
                         data={conversations || []}
                         renderItem={({ item, index }) => {
                             return <Conversation
-                                themeColor={themeColor}
+                                // themeColor={themeColor}
                                 onClick={() => onConversationClick && onConversationClick(index)}
                                 key={index}
                                 title={item.title}
