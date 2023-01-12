@@ -3,8 +3,10 @@ import React from 'react'
 import type MessageType from '../MessageType'
 import MessageList from '../message-list'
 import MessageInput from '../message-input'
+import MessageHeader from '../message-header'
 
-type Props = {
+
+export type Props = {
     onBack?: () => void
     showBack?: boolean
     header?: string
@@ -22,9 +24,8 @@ const MessageContainer = (props: Props) => {
     return (
         <View style={styles.container}>
             {!props.loading &&
-                <View />
-                // <MessageHeader
-                //   {...props} >{props.header}</MessageHeader>
+                <MessageHeader
+                    {...props} >{props.header}</MessageHeader>
             }
 
             <MessageList

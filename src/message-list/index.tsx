@@ -25,9 +25,53 @@ const MessageList = ({
     themeColor = '#6ea9d7',
 }: Props) => {
 
+    const [isAtBottom, setIsAtBottom] = React.useState(false)
+    const [isRendered, setIsRendered] = React.useState(false);
+
+    const [reversedMessages, setReversedMessages] = React.useState<MessageType[]>([])
+
+    const flatlistRef = React.useRef<any>()
+
+    /** keeps track of whether messages was previously empty or whether it has already scrolled */
+    const [messagesWasEmpty, setMessagesWasEmpty] = React.useState(true)
+
+    React.useEffect(() => {
+        if (messages) {
+            setReversedMessages([...messages].reverse())
+        }
+    }, [messages])
+
+    React.useEffect(() => {
+        if (!reversedMessages) {
+            setMessagesWasEmpty(true)
+        }
+
+        if (reversedMessages) {
+
+            if (messagesWasEmpty) {
+                //if the messages object was previously empty then scroll to bottom
+                // this is for when the first page of messages arrives
+                //if a user has instead scrolled to the top and the next page of messages arrives then don't scroll to bottom
+
+                setMessagesWasEmpty(false)
+            }
+
+            // //todo this is just a quick fix, the ideal behavior we would want is when new messages are added, it doesnt 
+            // //scroll to the bottom and neither does it scroll to the top it remains right where it is
+            // scrollToBottom()
+
+            //when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
+            if (isAtBottom) {
+                scrollToBottom()
+            }
+
+        }
+    }, [reversedMessages])
 
     const scrollToBottom = async () => {
-
+        if (flatlistRef.current) {
+            flatlistRef.current.scrollToEnd({ animated: true })
+        }
     }
 
     return (
@@ -39,36 +83,53 @@ const MessageList = ({
                     <>
                         {(messages && messages.length <= 0) ?
                             <View style={styles.noMessagesContainer}>
-                                <Text>No messages yet...</Text>
+                                <Text style={styles.noMessagesText}>No messages yet...</Text>
                             </View>
 
                             :
+                            <View style={styles.scrollContainer}>
+                                <KeyboardAwareFlatList
+                                    inverted={true}
+                                    ref={flatlistRef}
+                                    onLayout={() => setIsRendered(true)}
+                                    onScroll={(e) => {
+                                        if (e.nativeEvent.contentOffset.y === 0) {
+                                            onScrollToTop && onScrollToTop()
+                                        }
 
-                            <KeyboardAwareFlatList
-                                style={styles.scrollContainer}
-                                data={messages || []}
-                                renderItem={({ item: { user, text }, index }) => {
-                                    if (user.id == (currentUserId && currentUserId.toLowerCase())) {
-                                        // my message
-                                        return <Message key={index}
-                                            position="right"
-                                            themeColor={themeColor}
-                                            // the last message should show loading if sendMessage loading is true
-                                            loading={(index === (messages?.length || 0) - 1) && sendMessageLoading}
-                                        >{text}</Message>
+                                        //check if the scroll is close to the bottom
 
-                                    } else {
-                                        // other message
-                                        return <Message
-                                            position='left'
-                                            themeColor={themeColor}
-                                            key={index}
-                                            user={user}
-                                        >{text}</Message>
-                                    }
-                                }}
+                                        if (e.nativeEvent.contentOffset.y > e.nativeEvent.contentSize.height - e.nativeEvent.layoutMeasurement.height - 50) {
+                                            setIsAtBottom(true)
+                                        } else {
+                                            setIsAtBottom(false)
+                                        }
+                                    }}
+                                    keyExtractor={(item, index) => index.toString()}
+                                    data={reversedMessages || []}
+                                    renderItem={({ item: { user, text }, index }) => {
+                                        if (user.id == (currentUserId && currentUserId.toLowerCase())) {
+                                            // my message
+                                            return <Message key={index}
+                                                position="right"
+                                                themeColor={themeColor}
+                                                // the last message should show loading if sendMessage loading is true
+                                                loading={(index === 0) && sendMessageLoading}
+                                            >{text}</Message>
 
-                            />
+                                        } else {
+                                            // other message
+                                            return <Message
+                                                position='left'
+                                                themeColor={themeColor}
+                                                key={index}
+                                                user={user}
+                                            >{text}</Message>
+                                        }
+                                    }}
+
+                                />
+                            </View>
                         }
                     </>
                 }
@@ -99,11 +160,21 @@ const styles = StyleSheet.create({
     // },
     scrollContainer: {
         zIndex: 2,
+        paddingTop: 90,
+        paddingBottom: 90
     },
     innerContainer: {
     },
     noMessagesContainer: {
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
+    noMessagesText: {
+        color: " rgba(0,0,0,.36)",
+        display: 'flex',
+        fontSize: 14,
+    }
 })
 
 export default MessageList

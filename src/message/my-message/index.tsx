@@ -14,20 +14,24 @@ const MyMessage = ({
     themeColor = '#6ea9d7',
     loading
 }: Props) => {
+
+    console.log({ loading })
     return (
         <View style={styles.wrapper}>
             <View>
                 <View style={[styles.container,
-                    {alignSelf: "flex-end" }
-                    ]}>
+                { alignSelf: "flex-end" }
+                ]}>
 
-                    <View style={[styles.background, { backgroundColor: themeColor}]} />
+                    <View style={[styles.background, { backgroundColor: themeColor }]} />
 
                     <View style={styles.contentContainer}>
-                    <Text style={styles.contentText}>{children}</Text>
+                        <Text style={styles.contentText}>{children}</Text>
                     </View>
 
-                    {loading && <View style={styles.loadingContainer}> <Loading /> </View>}
+                    {loading && <View style={styles.loadingContainer}>
+                        <Loading />
+                    </View>}
 
                 </View>
             </View>

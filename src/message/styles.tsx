@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         height: "100%",
         alignItems: "center",
+        
     },
     contentContainer: {
         textAlign: "left",

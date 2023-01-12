@@ -1,20 +1,45 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { Message, MessageList ,MessageContainer} from 'react-native-chat-ui';
-import { messages } from './data';
+import { MainContainer } from 'react-native-chat-ui';
+import { messages, chats } from './data';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
 
+  const [messageView, setMessageView] = React.useState(false);
 
   return (
     <View>
+      <MainContainer
+        inbox={{
+          onScrollToBottom: () => console.log("onScrollToBottom"),
+          themeColor: "#6ea9d7",
+          conversations: chats,
+          // conversations: [],
+          loading: false,
+          onConversationClick: () => setMessageView(true),
+        }}
+        selectedConversation={
+          messageView ?
+            {
+              themeColor: "#6ea9d7",
+              messages: messages,
+              // messages: [],
+              header: "Sandra Bullock",
+              currentUserId: "danny_1",
+              sendMessageLoading: true,
+              onSendMessage: () => console.log("onSendMessage"),
+              onBack: () => setMessageView(false),
+              onScrollToTop: () => console.log("onScrollToTop"),
+            } : null
+        }
+      />
 
-      <MessageContainer
+      {/* <MessageContainer
         messages={messages}
         currentUserId="danny_1"
-      />
+        header='Martha'
+      /> */}
     </View>
   );
 }

@@ -3,6 +3,17 @@ import MessageList from './message-list'
 import Loading from './loading'
 import MessageContainer from './message-container'
 import MessageInput from './message-input'
+import MessageHeader from './message-header'
+import MainContainer from './main-container'
+import Conversation from './conversation'
+import ConversationList from './conversation-list'
+import ConversationHeader from './conversation-header'
+
+
+
+
+
+
 
 
 export {
@@ -10,5 +21,10 @@ export {
   MessageList,
   Loading,
   MessageContainer,
-  MessageInput
+  MessageInput,
+  MessageHeader,
+  MainContainer,
+  Conversation,
+  ConversationList,
+  ConversationHeader
 }
