@@ -10,10 +10,11 @@ type Props = {}
 const Loading = ({ }: Props) => {
   return (
     <View style={styles.container}>
-      <MaterialIndicator 
-      size={10}
-      color={"#fff"} />
-      </View>
+      {/* @ts-ignore */}
+      <MaterialIndicator
+        size={10}
+        color={"#fff"} />
+    </View>
   )
 }
 

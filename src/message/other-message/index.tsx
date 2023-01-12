@@ -11,25 +11,30 @@ type Props = {
 
 const OtherMessage = ({ children, user, themeColor = '#6ea9d7' }: Props) => {
 
-    const [avatar, setAvatar] = React.useState<any>(require('./profile.png'))
+    const [avatarLoading, setAvatarLoading] = React.useState(false);
+    const [avatarError, setAvatarError] = React.useState(false);
 
-    React.useEffect(() => {
-        if (user?.avatar && user.avatar.trim().length > 0) {
-            setAvatar({ uri: user.avatar })
-        }
-    }, [user])
 
     return (
         <View style={styles.wrapper}>
             <View style={localStyles.internalWrapper}>
                 <View style={localStyles.dpContainer}>
+                    {(avatarLoading || avatarError || !user?.avatar) && (
+                        <Image
+                            source={require('./profile.png')}
+                            style={localStyles.displayPicture}
+                        />
+                    )}
+
                     <Image
-                        style={localStyles.displayPicture}
-                        onError={() => {
-                            setAvatar(require('./profile.png'))
-                        }}
-                        source={avatar}
+                        source={{ uri: user?.avatar }}
+                        style={[localStyles.displayPicture, { position: "absolute", top: 0, left: 0, bottom: 0, right: 0, zIndex: 1 }]}
+                        onLoadStart={() => setAvatarLoading(true)}
+                        onLoadEnd={() => setAvatarLoading(false)}
+                        onError={() => setAvatarError(true)}
+
                     />
+
                 </View>
 
                 <View style={localStyles.textWrapper}>

@@ -23,9 +23,11 @@ export type Props = {
 const MessageContainer = (props: Props) => {
     return (
         <View style={styles.container}>
-            {!props.loading &&
+            {!props.loading ?
                 <MessageHeader
                     {...props} >{props.header}</MessageHeader>
+                :
+                <View style={{ height: 2 }} />
             }
 
             <MessageList
@@ -33,10 +35,12 @@ const MessageContainer = (props: Props) => {
             />
 
 
-            {!props.loading &&
+            {!props.loading ?
                 <MessageInput
                     {...props}
                 />
+                :
+                <View style={{ height: 2 }} />
             }
         </View>
     )

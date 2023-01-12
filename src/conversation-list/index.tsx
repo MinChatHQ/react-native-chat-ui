@@ -3,7 +3,8 @@ import React from 'react'
 import type ConversationType from '../ConversationType'
 import { KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view'
 import Conversation from '../conversation'
-import Loading from '../loading'
+
+import Loading from '../loading' 
 
 export interface Props {
     onConversationClick?: (index: number) => void
@@ -41,7 +42,7 @@ const ConversationList = ({
 
                     <KeyboardAwareFlatList
                         onEndReached={() => onScrollToBottom && onScrollToBottom()}
-                        keyExtractor={(_, index) => index.toString()}
+                        keyExtractor={(item, index) => item.id ? item.id : index.toString()}
                         data={conversations || []}
                         renderItem={({ item, index }) => {
                             return <Conversation

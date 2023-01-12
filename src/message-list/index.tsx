@@ -104,7 +104,7 @@ const MessageList = ({
                                             setIsAtBottom(false)
                                         }
                                     }}
-                                    keyExtractor={(_, index) => index.toString()}
+                                    keyExtractor={(item, index) => item.id? item.id: index.toString()}
                                     data={reversedMessages || []}
                                     renderItem={({ item: { user, text }, index }) => {
                                         if (user.id == (currentUserId && currentUserId.toLowerCase())) {
@@ -144,6 +144,7 @@ const MessageList = ({
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#f3f4f6',
+        height: '100%',
 
     },
     // scrollBackground: {
@@ -160,7 +161,8 @@ const styles = StyleSheet.create({
     scrollContainer: {
         zIndex: 2,
         paddingTop: 90,
-        paddingBottom: 90
+        paddingBottom: 90,
+        height: '100%',
     },
     innerContainer: {
     },

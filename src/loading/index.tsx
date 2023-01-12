@@ -11,6 +11,7 @@ type Props = {
 const Loading = ({ themeColor }: Props) => {
   return (
     <View style={styles.container}>
+       {/* @ts-ignore */}
       <MaterialIndicator color={themeColor} />
     </View>
   )

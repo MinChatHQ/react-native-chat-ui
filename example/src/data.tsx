@@ -1,6 +1,6 @@
 
 export const chats = [{
-    id: "1",
+    id: "a",
     title: "Epic gamers",
     avatar: "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg"
     , lastMessage: {
@@ -14,7 +14,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "2",
+    id: "b",
 
     title: "Devops",
     lastMessage: {
@@ -41,7 +41,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "4",
+    id: "c",
     title: "Epic gamers",
     lastMessage: {
         seen: true,
@@ -54,7 +54,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "5",
+    id: "d",
     title: "Devops",
     lastMessage: {
         seen: true,
@@ -66,7 +66,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "6",
+    id: "e",
     title: "Pigments",
     lastMessage: {
         seen: true,
@@ -78,7 +78,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "7",
+    id: "f",
     title: "Epic gamers",
     lastMessage: {
         seen: true,
@@ -90,7 +90,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "8",
+    id: "g",
     title: "Devops",
     lastMessage: {
         seen: true,
@@ -102,7 +102,7 @@ export const chats = [{
         }
     }
 }, {
-    id: "9",
+    id: "h",
     title: "Pigments",
     lastMessage: {
         seen: true,

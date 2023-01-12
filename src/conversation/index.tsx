@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import type MessageType from 'src/MessageType'
 
@@ -22,13 +22,8 @@ const Conversation = ({
     // themeColor = '#6ea9d7',
     currentUserId
 }: Props) => {
-    const [usedAvatar, setUsedAvatar] = React.useState<any>(require('./profile.png'))
-
-    React.useEffect(() => {
-        if (avatar && avatar.trim().length > 0) {
-            setUsedAvatar({ uri: avatar })
-        }
-    }, [avatar])
+    const [avatarLoading, setAvatarLoading] = React.useState(false);
+    const [avatarError, setAvatarError] = React.useState(false);
 
     return (
         <TouchableOpacity
@@ -39,13 +34,21 @@ const Conversation = ({
 
             <View style={styles.contentContainer}>
                 <View style={styles.displayPictureContainer}>
+                    {(avatarLoading || avatarError || !avatar) && (
+                        <Image
+                            source={require('./profile.png')}
+                            style={styles.displayPicture}
+                        />
+                    )}
+
                     <Image
-                        style={styles.displayPicture}
-                        onError={() => {
-                            setUsedAvatar(require('./profile.png'))
-                        }}
-                        source={usedAvatar}
+                        source={{ uri: avatar }}
+                        style={[styles.displayPicture, { position: "absolute", top: 0, left: 0, bottom: 0, right: 0, zIndex: 1 }]}
+                        onLoadStart={() => setAvatarLoading(true)}
+                        onLoadEnd={() => setAvatarLoading(false)}
+                        onError={() => setAvatarError(true)}
                     />
+
                 </View>
 
 

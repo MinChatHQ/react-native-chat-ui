@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import {  View } from 'react-native';
+import { View } from 'react-native';
 import { MainContainer } from 'react-native-chat-ui';
-import { messages, chats } from './data';
+import { chats, messages } from './data';
 
 export default function App() {
 
@@ -23,6 +23,16 @@ export default function App() {
           messageView ?
             {
               themeColor: "#6ea9d7",
+              // messages:
+              //   [{
+              //     "user": {
+              //       "id": "danny_1",
+              //       "name": "Daniel Georgetown",
+              //       avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+
+              //     },
+              //     "text": "first message"
+              //   },],
               messages: messages,
               // messages: [],
               header: "Sandra Bullock",
