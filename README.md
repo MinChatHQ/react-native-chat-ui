@@ -2,6 +2,8 @@ Build your own chat UI with React Native components in a few minutes. React Nati
 
 **React Native Chat UI makes chat UI development faster**
 
+# Documentation
+You can view detailed documentation [here](https://react.minchat.io)
 
 # Install
 
