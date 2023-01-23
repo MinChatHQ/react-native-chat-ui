@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { memo } from 'react'
 import type MessageType from 'src/MessageType'
 
-type Props = {
+export type Props = {
     title: string,
     lastMessage?: MessageType,
     avatar?: string,
@@ -25,6 +25,28 @@ const Conversation = ({
     const [avatarLoading, setAvatarLoading] = React.useState(false);
     const [avatarError, setAvatarError] = React.useState(false);
 
+    const MemoImage = memo((props: { avatar?: string }) => {
+        return <Image
+            source={{ uri: props.avatar }}
+            style={[styles.displayPicture, { position: "absolute", top: 0, left: 0, bottom: 0, right: 0, zIndex: 1 }]}
+            onLoadStart={() => setAvatarLoading(true)}
+            onLoadEnd={() => setAvatarLoading(false)}
+            onError={() => setAvatarError(true)}
+        />
+    }, (_, __) => {
+        return true
+    }
+    )
+
+    const PlaceHolderImage = memo(() => {
+        return <Image
+            source={require('./profile.png')}
+            style={styles.displayPicture}
+        />
+    }, (_, __) => {
+        return true
+    }
+    )
     return (
         <TouchableOpacity
             style={styles.container}
@@ -35,19 +57,10 @@ const Conversation = ({
             <View style={styles.contentContainer}>
                 <View style={styles.displayPictureContainer}>
                     {(avatarLoading || avatarError || !avatar) && (
-                        <Image
-                            source={require('./profile.png')}
-                            style={styles.displayPicture}
-                        />
+                        <PlaceHolderImage />
                     )}
 
-                    <Image
-                        source={{ uri: avatar }}
-                        style={[styles.displayPicture, { position: "absolute", top: 0, left: 0, bottom: 0, right: 0, zIndex: 1 }]}
-                        onLoadStart={() => setAvatarLoading(true)}
-                        onLoadEnd={() => setAvatarLoading(false)}
-                        onError={() => setAvatarError(true)}
-                    />
+                    <MemoImage avatar={avatar} />
 
                 </View>
 

@@ -6,22 +6,41 @@ import { SvgXml } from 'react-native-svg';
 type Props = {
     onSendMessage?: (text: string) => void
     themeColor?: string
+    onStartTyping?: () => void
+    onEndTyping?: () => void
 }
 
 const MessageInput = ({
     onSendMessage,
     themeColor = '#6ea9d7',
+    onStartTyping,
+    onEndTyping
 }: Props) => {
     const [text, setText] = React.useState("")
+
+    const [typing, setTyping] = React.useState(false);
+
+    React.useEffect(() => {
+        //call the function when typing starts or ends but should not call it on every render and should only be called when the value of typing changes
+        if (typing) {
+            onStartTyping && onStartTyping()
+        } else {
+            onEndTyping && onEndTyping()
+        }
+    }, [typing])
 
 
     const handleSubmit = () => {
         if (text.trim().length > 0) {
+            setTyping(false)
+
             onSendMessage && onSendMessage(text.trim())
             setText("")
 
         }
     }
+
+    const typingTimeoutRef = React.useRef<any>(null);
 
     return (
         <View style={styles.container}>
@@ -32,7 +51,12 @@ const MessageInput = ({
                     onSubmitEditing={handleSubmit}
                     placeholder='Send a message...'
                     value={text}
-                    onChangeText={(newText) => setText(newText)}
+                    onChangeText={(newText: string) => {
+                        setText(newText)
+                        setTyping(true);
+                        clearTimeout(typingTimeoutRef.current);
+                        typingTimeoutRef.current = setTimeout(() => setTyping(false), 2000)
+                    }}
                     style={styles.input} />
 
             </View>

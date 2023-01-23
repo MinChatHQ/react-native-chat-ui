@@ -3,7 +3,7 @@ import type UserType from 'src/UserType'
 import MyMessage from './my-message'
 import OtherMessage from './other-message'
 
-type Props = {
+export type Props = {
   children: string,
   loading?: boolean
   themeColor?: string

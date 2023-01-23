@@ -8,13 +8,7 @@ import MainContainer from './main-container'
 import Conversation from './conversation'
 import ConversationList from './conversation-list'
 import ConversationHeader from './conversation-header'
-
-
-
-
-
-
-
+import TypingIndicator from './typing-indicator'
 
 export {
   Message,
@@ -26,5 +20,6 @@ export {
   MainContainer,
   Conversation,
   ConversationList,
-  ConversationHeader
+  ConversationHeader,
+  TypingIndicator
 }

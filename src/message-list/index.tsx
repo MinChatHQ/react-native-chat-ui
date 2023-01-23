@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useCallback, memo } from 'react'
 import type MessageType from '../MessageType'
-import Message from '../message'
+import Message, { Props as MessageProps } from '../message'
 import Loading from '../loading'
 import { KeyboardAwareFlatList } from 'react-native-keyboard-aware-scroll-view'
+import TypingIndicator from '../typing-indicator'
 
 type Props = {
     themeColor?: string
@@ -14,6 +15,8 @@ type Props = {
     sendMessageLoading?: boolean
     onScrollToTop?: () => void
     mobileView?: boolean
+    showTypingIndicator?: boolean
+    typingIndicatorContent?: string
 }
 
 const MessageList = ({
@@ -23,6 +26,8 @@ const MessageList = ({
     sendMessageLoading = false,
     onScrollToTop,
     themeColor = '#6ea9d7',
+    typingIndicatorContent,
+    showTypingIndicator
 }: Props) => {
 
     const [isAtBottom, setIsAtBottom] = React.useState(false)
@@ -36,7 +41,18 @@ const MessageList = ({
 
     React.useEffect(() => {
         if (messages) {
-            setReversedMessages([...messages].reverse())
+            //it add messages that are not already in the reversedMessages array that are incoming from the messages array without needing to recreate the 
+            //reversedMessages array
+            const localReversedMessages = [...messages].reverse()
+
+            const notExistingMessages = localReversedMessages.filter(message => {
+                return !reversedMessages.find(rMessage => rMessage.id === message.id)
+            })
+
+            setReversedMessages(value => {
+                value.unshift(...notExistingMessages)
+                return value
+            })
         }
     }, [messages])
 
@@ -55,10 +71,6 @@ const MessageList = ({
                 setMessagesWasEmpty(false)
             }
 
-            // //todo this is just a quick fix, the ideal behavior we would want is when new messages are added, it doesnt 
-            // //scroll to the bottom and neither does it scroll to the top it remains right where it is
-            // scrollToBottom()
-
             //when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
             if (isAtBottom) {
                 scrollToBottom()
@@ -67,11 +79,50 @@ const MessageList = ({
         }
     }, [reversedMessages])
 
+    React.useEffect(() => {
+        //TODO when closer to the bottom of the scroll bar and a new message arrives then scroll to bottom
+        if (isAtBottom) {
+            scrollToBottom()
+        }
+    }, [showTypingIndicator])
+
+
     const scrollToBottom = async () => {
         if (flatlistRef.current) {
             flatlistRef.current.scrollToEnd({ animated: true })
         }
     }
+
+
+    const MemoMessage = memo((props: MessageProps) => {
+        // Render image using imageUrl
+        return <Message {...props} />
+    }
+        , (prevProps, nextProps) => {
+            return prevProps.loading === nextProps.loading
+        }
+    )
+
+
+    const renderItem = useCallback(({ item: { user, text }, index }: { item: MessageType, index: number }) => {
+        if (user.id == (currentUserId && currentUserId.toLowerCase())) {
+            // my message
+            return <MemoMessage
+                position="right"
+                themeColor={themeColor}
+                // the last message should show loading if sendMessage loading is true
+                loading={(index === 0) && sendMessageLoading}
+            >{text}</MemoMessage>
+
+        } else {
+            // other message
+            return <MemoMessage
+                position='left'
+                themeColor={themeColor}
+                user={user}
+            >{text}</MemoMessage>
+        }
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -90,43 +141,28 @@ const MessageList = ({
                                 <KeyboardAwareFlatList
                                     inverted={true}
                                     ref={flatlistRef}
-                                    // onLayout={() => setIsRendered(true)}
+                                    keyExtractor={(item, index) => item.id ? item.id : index.toString()}
+                                    data={reversedMessages || []}
+                                    renderItem={renderItem}
+                                    ListHeaderComponent={
+                                        showTypingIndicator ? <TypingIndicator
+                                            content={typingIndicatorContent}
+                                            themeColor={themeColor} />
+                                            : undefined
+                                    }
                                     onScroll={(e) => {
-                                        if (e.nativeEvent.contentOffset.y === 0) {
-                                            onScrollToTop && onScrollToTop()
+                                        if (e.nativeEvent.contentOffset.y <= 100) {
+                                            setIsAtBottom(true)
+                                        }else{
+                                            setIsAtBottom(false)
                                         }
 
                                         //check if the scroll is close to the bottom
-
                                         if (e.nativeEvent.contentOffset.y > e.nativeEvent.contentSize.height - e.nativeEvent.layoutMeasurement.height - 50) {
-                                            setIsAtBottom(true)
+                                            onScrollToTop && onScrollToTop()
                                         } else {
-                                            setIsAtBottom(false)
                                         }
                                     }}
-                                    keyExtractor={(item, index) => item.id? item.id: index.toString()}
-                                    data={reversedMessages || []}
-                                    renderItem={({ item: { user, text }, index }) => {
-                                        if (user.id == (currentUserId && currentUserId.toLowerCase())) {
-                                            // my message
-                                            return <Message key={index}
-                                                position="right"
-                                                themeColor={themeColor}
-                                                // the last message should show loading if sendMessage loading is true
-                                                loading={(index === 0) && sendMessageLoading}
-                                            >{text}</Message>
-
-                                        } else {
-                                            // other message
-                                            return <Message
-                                                position='left'
-                                                themeColor={themeColor}
-                                                key={index}
-                                                user={user}
-                                            >{text}</Message>
-                                        }
-                                    }}
-
                                 />
                             </View>
                         }

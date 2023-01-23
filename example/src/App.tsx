@@ -11,9 +11,11 @@ export default function App() {
   return (
     <View>
       <MainContainer
+    
         inbox={{
           onScrollToBottom: () => console.log("onScrollToBottom"),
-          themeColor: "#6ea9d7",
+          // themeColor: "#6ea9d7",
+          themeColor: "#fcb900",
           conversations: chats,
           // conversations: [],
           loading: false,
@@ -22,7 +24,11 @@ export default function App() {
         selectedConversation={
           messageView ?
             {
-              themeColor: "#6ea9d7",
+              showTypingIndicator: true,
+              typingIndicatorContent: "John is typing",
+              onStartTyping: () => console.log("onStartTyping"),
+              onEndTyping: () => console.log("onStopTyping"),
+              themeColor: "red",
               // messages:
               //   [{
               //     "user": {

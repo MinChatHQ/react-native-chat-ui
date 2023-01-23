@@ -15,7 +15,6 @@ const MyMessage = ({
     loading
 }: Props) => {
 
-    console.log({ loading })
     return (
         <View style={styles.wrapper}>
             <View>

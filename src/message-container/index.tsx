@@ -18,6 +18,10 @@ export type Props = {
     loading?: boolean
     currentUserId?: string
     messages?: MessageType[]
+    onStartTyping?: () => void,
+    onEndTyping?: () => void,
+    showTypingIndicator?: boolean
+    typingIndicatorContent?: string
 
 }
 const MessageContainer = (props: Props) => {
