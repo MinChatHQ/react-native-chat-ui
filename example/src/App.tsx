@@ -11,10 +11,9 @@ export default function App() {
   return (
     <View>
       <MainContainer
-    
+
         inbox={{
           onScrollToBottom: () => console.log("onScrollToBottom"),
-          // themeColor: "#6ea9d7",
           themeColor: "#fcb900",
           conversations: chats,
           // conversations: [],
@@ -26,8 +25,8 @@ export default function App() {
             {
               showTypingIndicator: true,
               typingIndicatorContent: "John is typing",
-              onStartTyping: () => console.log("onStartTyping"),
-              onEndTyping: () => console.log("onStopTyping"),
+              // onStartTyping: () => console.log("onStartTyping"),
+              // onEndTyping: () => console.log("onStopTyping"),
               themeColor: "red",
               // messages:
               //   [{
@@ -44,9 +43,9 @@ export default function App() {
               header: "Sandra Bullock",
               currentUserId: "danny_1",
               sendMessageLoading: true,
-              onSendMessage: () => console.log("onSendMessage"),
+              // onSendMessage: () => console.log("onSendMessage"),
               onBack: () => setMessageView(false),
-              onScrollToTop: () => console.log("onScrollToTop"),
+              // onScrollToTop: () => console.log("onScrollToTop"),
             } : null
         }
       />

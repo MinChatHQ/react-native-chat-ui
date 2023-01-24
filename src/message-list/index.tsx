@@ -105,11 +105,38 @@ const MessageList = ({
 
 
     const renderItem = useCallback(({ item: { user, text }, index }: { item: MessageType, index: number }) => {
+
+        //determining the type of message to render
+        let lastClusterMessage, firstClusterMessage, last, single
+
+        //if it is the first message in the messages array then show the header
+        if (index === 0) { lastClusterMessage = true }
+        //if the previous message from a different user then show the header
+        if (index > 0 && reversedMessages[index - 1]?.user.id !== user.id) { lastClusterMessage = true; last = true }
+        //if it is the last message in the messages array then show the avatar and is the last incoming
+        if (index === reversedMessages.length - 1) { firstClusterMessage = true; }
+        //if the next message from a different user then show the avatar and is last message incoming
+        if (index < reversedMessages.length - 1 && reversedMessages[index + 1]?.user.id !== user.id) { firstClusterMessage = true; }
+        if (index < reversedMessages.length + 1 && reversedMessages[index - 1]?.user.id !== user.id) { last = true }
+
+        //if the next message and the previous message are not from the same user then single incoming is true
+        if (index < reversedMessages.length - 1 && index > 0 && reversedMessages[index + 1]?.user.id !== user.id && reversedMessages[index - 1]?.user.id !== user.id) { single = true }
+        //if it is the first message in the messages array and the next message is from a different user then single incoming is true
+        if (index === 0 && index < reversedMessages.length - 1 && reversedMessages[index + 1]?.user.id !== user.id) { single = true }
+        //if it is the last message in the messages array and the previous message is from a different user then single incoming is true
+        if (index === reversedMessages.length - 1 && index > 0 && reversedMessages[index - 1]?.user.id !== user.id) { single = true }
+        //if the messages array contains only 1 message then single incoming is true
+        if (reversedMessages.length === 1) { single = true }
+
         if (user.id == (currentUserId && currentUserId.toLowerCase())) {
             // my message
             return <MemoMessage
-                position="right"
+                type="outgoing"
                 themeColor={themeColor}
+                last={single ? false : last}
+                single={single}
+                clusterFirstMessage={firstClusterMessage}
+                clusterLastMessage={lastClusterMessage}
                 // the last message should show loading if sendMessage loading is true
                 loading={(index === 0) && sendMessageLoading}
             >{text}</MemoMessage>
@@ -117,9 +144,13 @@ const MessageList = ({
         } else {
             // other message
             return <MemoMessage
-                position='left'
+                type='incoming'
                 themeColor={themeColor}
                 user={user}
+                showAvatar={lastClusterMessage}
+                showHeader={firstClusterMessage}
+                last={single ? false : last}
+                single={single}
             >{text}</MemoMessage>
         }
     }, [])
@@ -153,7 +184,7 @@ const MessageList = ({
                                     onScroll={(e) => {
                                         if (e.nativeEvent.contentOffset.y <= 100) {
                                             setIsAtBottom(true)
-                                        }else{
+                                        } else {
                                             setIsAtBottom(false)
                                         }
 

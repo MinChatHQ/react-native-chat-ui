@@ -298,7 +298,35 @@ export const messages = [
             "name": "Daniel Georgetown",
             avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
-        "text": "is"
+        "text": "Hello world"
+    }, {
+        "user": {
+            "id": "danny_2",
+            "name": "Daniel Georgetown",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+        },
+        "text": "Hello world"
+    }, {
+        "user": {
+            "id": "danny_2",
+            "name": "Daniel Georgetown",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+        },
+        "text": "Hello world"
+    }, {
+        "user": {
+            "id": "danny_2",
+            "name": "Daniel Georgetown",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+        },
+        "text": "Hello world"
+    }, {
+        "user": {
+            "id": "danny_2",
+            "name": "Daniel Georgetown",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+        },
+        "text": "Hello world"
     },
     {
         "user": {

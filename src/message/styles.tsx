@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
         display: "flex",
         justifyContent: "flex-end",
         marginRight: 10,
-        marginTop: 12,
         position: "relative",
         boxSizing: "border-box"
 
@@ -15,8 +14,7 @@ const styles = StyleSheet.create({
         width: "auto",
         maxWidth: 200,
         flexWrap: "wrap",
-        marginBottom: 12,
-        marginLeft: 10,
+        marginLeft: 4,
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "flex-end",
@@ -30,7 +28,6 @@ const styles = StyleSheet.create({
          right:0, 
          bottom:0,
         position: "absolute",
-        borderRadius: 16,
     },
     loadingContainer: {
         position: "absolute",
