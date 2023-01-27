@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
         borderTopColor: "rgba(0, 0, 0, 0.07999999821186066)",
         borderTopWidth: 1,
         paddingTop: 8,
-        boxSizing: "border-box",
         paddingLeft: 12,
         paddingRight: 60,
 
@@ -107,7 +106,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        boxSizing: "border-box"
     },
     input: {
         width: "100%",

@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         marginRight: 10,
         position: "relative",
-        boxSizing: "border-box"
 
     },
     container: {
@@ -20,7 +19,6 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         position: "relative",
         gap: 10,
-        boxSizing: "border-box",
     },
     background: {
         top:0, 
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
         position: "relative",
-        boxSizing: "border-box",
     },
     contentText: {
         // fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",

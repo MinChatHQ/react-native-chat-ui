@@ -127,19 +127,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
 
         height: "100%",
-        boxSizing: "border-box",
     },
     displayPictureContainer: {
         width: 58,
         height: 58,
         marginRight: 12,
-        boxSizing: "border-box",
     },
     displayPicture: {
         width: 58,
         height: 58,
         borderRadius: 99999,
-        boxSizing: "border-box",
         // borderWidth: 1,
         // borderColor: "rgb(255 255 255)",
     },
@@ -154,8 +151,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 3,
         width: "100%",
-        boxSizing: "border-box",
-
     },
     textContainer: {
         flex: 1,
@@ -186,7 +181,6 @@ const styles = StyleSheet.create({
         color: "#7a7a7a",
         marginLeft: 8,
         // todo handle text overflow ...
-        boxSizing: "border-box",
     }
 
 });
