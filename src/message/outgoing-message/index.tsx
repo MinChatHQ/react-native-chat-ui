@@ -31,29 +31,26 @@ const OutgoingMessage = ({
             marginBottom: clusterLastMessage ? 16 : 4,
         }]}>
             <View>
-                <View style={{ display: "flex" }}>
+                <View style={[styles.container,
+                { alignSelf: "flex-end" }
+                ]}>
 
-                    <View style={[styles.container,
-                    { alignSelf: "flex-end" }
-                    ]}>
+                    <View style={[styles.background, {
+                        backgroundColor: themeColor,
+                        borderTopLeftRadius: 8,
+                        borderBottomLeftRadius: 8,
+                        borderBottomRightRadius: last ? 8 : 2,
+                        borderTopRightRadius: !last && single  ? 8 : 2,
 
-                        <View style={[styles.background, {
-                            backgroundColor: themeColor,
-                            borderTopLeftRadius: 8,
-                            borderBottomLeftRadius: 8,
-                            borderBottomRightRadius: last ? 8 : 2,
-                            borderTopRightRadius: !last && single ? 8 : 2,
+                    }]} />
 
-                        }]} />
-
-                        <View style={styles.contentContainer}>
-                            <Text style={styles.contentText}>{children}</Text>
-                        </View>
-
-                        {loading && <View style={styles.loadingContainer}>
-                            <Loading />
-                        </View>}
+                    <View style={styles.contentContainer}>
+                        <Text style={styles.contentText}>{children}</Text>
                     </View>
+
+                    {loading && <View style={styles.loadingContainer}>
+                        <Loading />
+                    </View>}
 
                 </View>
             </View>
