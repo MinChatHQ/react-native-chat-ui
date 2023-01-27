@@ -1,6 +1,6 @@
 {
   "name": "@minchat/react-native-chat-ui",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "description": "React Native Chat UI Kit",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
