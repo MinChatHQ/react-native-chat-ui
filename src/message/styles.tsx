@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
         position: "relative",
+        backgroundColor: "red"
     },
     contentText: {
         // fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
