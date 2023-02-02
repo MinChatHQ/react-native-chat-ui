@@ -166,16 +166,17 @@ export const messages = [
     {
         "user": {
             "id": "mark",
-            "name": "Markus"
+            "name": "Markus",
+            avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
-        "text": "hello"
+        "image": "https://images.unsplash.com/photo-1675115674616-8a570c34018d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
     },
     {
         "user": {
             "id": "danny_1",
             "name": "Daniel Georgetown"
         },
-        "text": "last message 2"
+        "image": "last message 2"
     },
     {
         "user": {
@@ -189,14 +190,14 @@ export const messages = [
             "id": "danny_1",
             "name": "Daniel Georgetown"
         },
-        "text": "Is everything alright"
+        "image": "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg"
     },
     {
         "user": {
             "id": "danny_2",
             "name": "Daniel Georgetown"
         },
-        "text": "lets talk things out"
+        "image": "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg"
     },
     {
         "user": {
@@ -382,7 +383,7 @@ export const fewMessages = [
             "name": "Daniel Georgetown",
             avatar: "https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
         },
-        "text": "come on man"
+        "image": "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-suliman-sallehi-1704488.jpg&fm=jpg"
     },
     {
         "user": {

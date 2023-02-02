@@ -4,7 +4,8 @@ import styles from '../styles'
 import type UserType from '../../UserType'
 
 type Props = {
-    children: string,
+    text?: string,
+    image?: string,
     user?: UserType,
     themeColor?: string
     showAvatar?: boolean
@@ -17,7 +18,8 @@ type Props = {
 
 
 const IncomingMessage = ({
-    children,
+    text,
+    image,
     user,
     showAvatar,
     showHeader,
@@ -28,9 +30,20 @@ const IncomingMessage = ({
     const [avatarLoading, setAvatarLoading] = React.useState(false);
     const [avatarError, setAvatarError] = React.useState(false);
 
+    const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 });
+
+    React.useEffect(() => {
+        if (image) {
+            Image.getSize(image, (width, height) => {
+                const aspectRatio = width / height;
+                const imageHeight = 200 / aspectRatio; //200 is the width of the message component
+                setImageDimensions({ width: 200, height: imageHeight });
+            });
+        }
+    }, []);
 
     return (
-        <View style={[styles.wrapper,{
+        <View style={[styles.wrapper, {
             marginTop: 4,
             marginBottom: 4
         }]}>
@@ -74,20 +87,27 @@ const IncomingMessage = ({
                     }
 
                     <View style={{ display: "flex" }}>
-                        <View style={[styles.container, { alignSelf: "flex-start",  justifyContent: "flex-start" }]}>
+                        <View style={[styles.container, { alignSelf: "flex-start", justifyContent: "flex-start" }]}>
 
-                            <View style={[styles.background, { 
+                            <View style={[styles.background, {
                                 backgroundColor: themeColor,
                                 opacity: 0.5,
                                 borderTopRightRadius: 8,
                                 borderBottomRightRadius: !last ? 8 : 2,
-                                borderBottomLeftRadius: last || single ? 8: 2,
-                             }
+                                borderBottomLeftRadius: last || single ? 8 : 2,
+                            }
                             ]} />
 
-                            <View style={styles.contentContainer}>
-                                <Text style={styles.contentText}>{children}</Text>
-                            </View>
+                            {image ?
+                                <View style={[styles.imageContainer, { height: imageDimensions.height }]}>
+                                    <Image style={styles.image} source={{ uri: image }} />
+                                </View>
+                                :
+                                <View style={styles.contentContainer}>
+                                    <Text style={styles.contentText}>{text}</Text>
+                                </View>
+                            }
+
                         </View>
                     </View>
                 </View>

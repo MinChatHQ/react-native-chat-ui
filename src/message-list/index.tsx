@@ -86,7 +86,7 @@ const MessageList = ({
     // )
 
 
-    const renderItem = ({ item: { user, text }, index }: { item: MessageType, index: number }) => {
+    const renderItem = ({ item: { user, text, image }, index }: { item: MessageType, index: number }) => {
         //determining the type of message to render
         let lastClusterMessage, firstClusterMessage, last, single
 
@@ -121,7 +121,9 @@ const MessageList = ({
                 clusterLastMessage={lastClusterMessage}
                 // the last message should show loading if sendMessage loading is true
                 loading={(index === 0) && sendMessageLoading}
-            >{text}</Message>
+                text={text}
+                image={image}
+            />
 
         } else {
             // other message
@@ -133,7 +135,9 @@ const MessageList = ({
                 showHeader={firstClusterMessage}
                 last={single ? false : last}
                 single={single}
-            >{text}</Message>
+                text={text}
+                image={image}
+            />
         }
     }
 

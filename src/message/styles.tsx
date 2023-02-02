@@ -1,4 +1,4 @@
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
 
 const styles = StyleSheet.create({
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
         position: "relative",
     },
     background: {
-        top:0, 
-        left:0,
-         right:0, 
-         bottom:0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         position: "absolute",
     },
     loadingContainer: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginLeft: 10,
         marginRight: 10
-        
+
     },
     contentContainer: {
         textAlign: "left",
@@ -49,7 +49,16 @@ const styles = StyleSheet.create({
         color: "#000000",
         fontSize: 14,
 
+    },
+    imageContainer: {
+        width: 200,
+        padding: 6,
+        position: "relative",
+    },
+    image: {
+        width: "100%",
+        height: "100%",
     }
 })
- 
+
 export default styles

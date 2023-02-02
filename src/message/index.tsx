@@ -4,8 +4,9 @@ import OutgoingMessage from './outgoing-message'
 import IncomingMessage from './incoming-message'
 
 export type Props = {
-  children: string,
-  loading?: boolean
+  text?: string,
+  image?: string,
+    loading?: boolean
   themeColor?: string
   type?: "incoming" | "outgoing"
   user?: UserType
@@ -20,8 +21,9 @@ export type Props = {
 }
 
 const Message = ({
-  children,
-  themeColor,
+  text,
+  image,
+    themeColor,
   loading,
   type = "outgoing",
   user,
@@ -37,7 +39,8 @@ const Message = ({
       <OutgoingMessage
         themeColor={themeColor}
         loading={loading}
-        children={children}
+        text={text}
+        image={image}
         last={last}
         single={single}
         clusterFirstMessage={clusterFirstMessage}
@@ -48,7 +51,8 @@ const Message = ({
 
       <IncomingMessage
         themeColor={themeColor}
-        children={children}
+        text={text}
+        image={image}
         user={user}
         showHeader={showHeader}
         last={last}
