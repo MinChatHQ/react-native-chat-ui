@@ -12,6 +12,8 @@ Build your own chat UI with React Native components in a few minutes. React Nati
 # Documentation
 You can view detailed documentation [here](https://reactnative.minchat.io)
 
+You can also read this tutorial on [Building a React Native Chat App: A Comprehensive Guide](https://minchat.io/blog/building-a-react-native-chat-app-a-comprehensive-guide)
+
 # Install
 
 Component Library
