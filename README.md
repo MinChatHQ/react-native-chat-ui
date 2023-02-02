@@ -1,9 +1,18 @@
+<p align="center">
+<img src="https://img.shields.io/github/license/minchathq/react-native-chat-ui"/>
+<img src="https://img.shields.io/npm/v/@minchat/react-native-chat-ui"/>
+<img src="https://img.shields.io/twitter/follow/minchathq?style=social"/>
+</p>
+
+
 Build your own chat UI with React Native components in a few minutes. React Native Chat UI Kit from [MinChat](https://minchat.io) is an open source UI toolkit for developing mobile chat applications.
 
 **React Native Chat UI makes chat UI development faster**
 
 # Documentation
 You can view detailed documentation [here](https://reactnative.minchat.io)
+
+You can also read this tutorial on [Building a React Native Chat App: A Comprehensive Guide](https://minchat.io/blog/building-a-react-native-chat-app-a-comprehensive-guide)
 
 # Install
 
@@ -104,6 +113,8 @@ Articles on the [minchat blog](https://minchat.io/blog)
 # Website
 
 [https://minchat.io](https://minchat.io)
+
+Unleash the power of seamless chat functionality with MinChat's [React Native Chat API!](https://minchat.io) Say goodbye to backend worries and hello to effortless integration. Get started today and save months of development time. Build a full-fledged React chat application in just minutes, not months!
 
 # License
 
