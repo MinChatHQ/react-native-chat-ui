@@ -22,6 +22,7 @@ export type Props = {
     onEndTyping?: () => void,
     showTypingIndicator?: boolean
     typingIndicatorContent?: string
+    onAttachClick?: () => void,
 
 }
 const MessageContainer = (props: Props) => {

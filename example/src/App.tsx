@@ -27,7 +27,6 @@ export default function App() {
   return (
     <View>
       <MainContainer
-
         inbox={{
           onScrollToBottom: () => console.log("onScrollToBottom"),
           themeColor: "#fcb900",
@@ -63,6 +62,7 @@ export default function App() {
               // onSendMessage: () => console.log("onSendMessage"),
               onBack: () => setMessageView(false),
               onScrollToTop: () => console.log("onScrollToTop"),
+              onAttachClick: () => console.log("onAttachClick"),
             } : null
         }
       />
