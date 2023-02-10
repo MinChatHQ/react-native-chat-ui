@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import type MessageType from '../MessageType'
 import MessageList from '../message-list'
@@ -27,7 +27,7 @@ export type Props = {
 }
 const MessageContainer = (props: Props) => {
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView behavior='height' style={styles.container}>
             {!props.loading ?
                 <MessageHeader
                     {...props} >{props.header}</MessageHeader>
@@ -47,7 +47,7 @@ const MessageContainer = (props: Props) => {
                 :
                 <View style={{ height: 2 }} />
             }
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 

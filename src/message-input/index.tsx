@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, TextInput,KeyboardAvoidingView } from 'react-native'
 import React from 'react'
 import { SvgXml } from 'react-native-svg';
 
