@@ -28,7 +28,28 @@ Using yarn.
 yarn add @minchat/react-native-chat-ui
 ```
 
+### React Native Expo
+```
+npx expo install react-native-svg
+```
 
+### React Native CLI
+1. Install dependecies
+
+from npm
+```bash
+npm install react-native-svg
+```
+from yarn
+```bash
+yarn add react-native-svg
+```
+2. Link native code
+```bash
+cd ios && pod install
+```
+
+# Usage
 ```jsx
 import { MainContainer } from "@minchat/react-native-chat-ui";
 
